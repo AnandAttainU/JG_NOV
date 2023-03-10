@@ -48,9 +48,35 @@ function inOrder(root){ // Left Root Right
     inOrder(root.right);
 }
 
-preOrder(root);
-console.log("--------");
-postOrder(root);
-console.log("--------");
-inOrder(root);
-console.log("--------");
+let count = 0;
+
+function numberOfNodes(root){
+    if(root==null) return;
+    count++;
+    numberOfNodes(root.left);
+    numberOfNodes(root.right);
+}
+
+function numberOfNodes2(root){
+    if(root==null) return 0;
+    let lsn = numberOfNodes2(root.left);
+    let rsn = numberOfNodes2(root.right);
+    return lsn + rsn + 1;
+}
+
+function height(root){
+    if(root==null) return 0;
+    let lsh = height(root.left);
+    let rsh = height(root.right);
+    return Math.max(lsh, rsh) + 1;
+}
+
+// preOrder(root);
+// console.log("--------");
+// postOrder(root);
+// console.log("--------");
+// inOrder(root);
+// console.log("--------");
+// numberOfNodes(root);
+// console.log(count);
+console.log(height(root));
